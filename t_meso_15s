@@ -1,0 +1,3 @@
+#!/bin/bash
+
+grep "Timing for main" $1 | awk 'BEGIN{t=0;c=0}{t=t+$9;c=c+1}END{print "\t total count \t|\t total time (min) \t |\t mean time \t |\t min for 1 Sim Day " ;print " \t" c " \t\t| \t " t/60 "\t\t |\t " t/c "\t |\t  " (t/c)*5760/60}'
