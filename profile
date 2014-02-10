@@ -1,0 +1,1 @@
+du -smc *| sort -n
