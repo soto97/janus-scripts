@@ -1,0 +1,5 @@
+#! /bin/bash
+
+rm -f wrfo*
+rm -f wrfr*
+rm -f wrfinput*
