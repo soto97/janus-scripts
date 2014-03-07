@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Calling: grads2nc grads_input.ctl netcdf_output.nc
+
+
+cdo -f nc import_binary $1 $2 
+
