@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Usage: 'pwdx PID'
+# where the PID is obtained from the ps command.
+# This script will show the directory in which the process was started.
+ 
+lsof -a -p $1 -d cwd -Fn | tail -1 | sed 's/.//'
