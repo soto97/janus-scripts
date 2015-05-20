@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Usage 1:  ldu
+# Usage 2:  ldu *
+# Usage 3:  ldu filename
+# Usage 4:  ldu directoryname
+
+# ldu provides the total memory size of a file or directory. The size 
+# is reported in human readable form. The '--apparent-size' flag 
+# insures that the proper size is returned, even when dealing with 
+# files on tape. 
+
+du -sh --apparent-size "$@" 
