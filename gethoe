@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# This script downloads the raw mp3 for a specified How On Earth broadcast.
+# You just give the date of the broadcast in the ISO 8601 format. See this 
+# XKCD cartoon for details: https://xkcd.com/1179/
+# The code will download the mp3 file in the current directory.
+# Syntax: gethoe YYYY-MM-DD
+
+
+YYYY=`echo $1 | cut -c 1-4`
+echo $YYYY
+
+curl -o "HowOnEarth_$1_raw.mp3" "http://www.kgnu.net/audioarchives/HowOnEarth/$YYYY/HowOnEarth_$1.mp3"
