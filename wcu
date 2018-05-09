@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# This script cleans up a planetWRF output folder. RSL files are placed
+# in their own directory, restart files are placed in their own directory,
+# wrfout* files are placed in their own directory, etc.
+
+# Distance ourselves (a tiny bit) from any screen litter:
+echo;
+
+# Determine fully-qualified filesystem location where this script was
+# executed from:
+curr_dir=`pwd`;
+
+
+###
+### RSL files
+### 
+
+# Check for an rsl_files directory; create one if necessary. 
+if test ! -d "$curr_dir/rsl_files"; then
+   mkdir "$curr_dir/rsl_files";
+fi
+
+# Move the RSL files into the rsl_files directory
+if ls $curr_dir/rsl.* 1> /dev/null 2>&1; then
+    mv rsl.* $curr_dir/rsl_files/.
+    echo "rsl files have been moved into the rsl_files directory"
+else
+    echo "rsl files do not exist at this level"
+fi
+
+
+###
+### WRF Restart files
+### 
+
+# Check for a restart directory; create one if necessary. 
+if test ! -d "$curr_dir/wrf_restarts"; then
+   mkdir "$curr_dir/wrf_restarts";
+fi
+
+# Move the restart files into the wrf_restarts directory
+if ls $curr_dir/wrfrst* 1> /dev/null 2>&1; then
+    mv wrfrst* $curr_dir/wrf_restarts/.
+    echo "WRF restart files have been moved into the wrf_restarts directory"
+else
+    echo "WRF restart files do not exist at this level"
+fi
+
+###
+### WRF Out files
+### 
+
+# Check for a WRF out directory; create one if necessary. 
+if test ! -d "$curr_dir/wrf_out"; then
+   mkdir "$curr_dir/wrf_out";
+fi
+
+# Move the WRF Out files into the wrf_out directory
+if ls $curr_dir/wrfout* 1> /dev/null 2>&1; then
+    mv wrfout* $curr_dir/wrf_out/.
+    echo "WRF out files have been moved into the wrf_out directory"
+else
+    echo "WRF out files do not exist at this level"
+fi
+
+
+
+echo;
