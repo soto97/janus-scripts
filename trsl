@@ -9,7 +9,7 @@
 # The script requires one parameter to be entered at the command line:
 # the timestep in seconds. Thus, the script is evoked by the following syntax:
 #
-# t_meso time_step
+# trsl time_step
 #
 # The script would then read rsl.out.0000 and calculate the clock time to
 # simulate one model year using "time_step" as the time-step in the simulation.
