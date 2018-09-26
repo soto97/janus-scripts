@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for i in "$@"
+ do
+     #echo "$i"
+     if [[ $i != *.tar* ]]; then
+        echo "Tarring $i"
+        tar czf "$i.tar.gz" "$i"
+        echo "Finished tarring $i"
+     fi
+ done
