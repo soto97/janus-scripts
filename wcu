@@ -48,7 +48,7 @@ else
 fi
 
 ###
-### WRF Out files
+### WRF Out files and namelist.input
 ### 
 
 # Check for a WRF out directory; create one if necessary. 
@@ -64,6 +64,31 @@ else
     echo "WRF out files do not exist at this level"
 fi
 
+# Copy the namelist file to the wrfout directory, for posterity.
+if ls $curr_dir/namelist.input 1> /dev/null 2>&1; then
+    cp namelist.input $curr_dir/wrf_out/.
+    echo "The namelist.input has been copied into the wrf_out directory"
+else
+    echo "The namelist.input file does not exist at this level"
+fi
+
+
+###
+### Auxiliary History files
+### 
+
+# Check for a WRF Auxiliary History (auxhist) directory; create one if necessary. 
+if test ! -d "$curr_dir/auxhist"; then
+   mkdir "$curr_dir/auxhist";
+fi
+
+# Move the auxhist files into the auxhist directory
+if ls $curr_dir/auxhist*_d* 1> /dev/null 2>&1; then
+    mv auxhist*_d* $curr_dir/auxhist/.
+    echo "Auxiliary History files have been moved into the auxhist directory"
+else
+    echo "Auxiliary History files do not exist at this level"
+fi
 
 
 echo;
