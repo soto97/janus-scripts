@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for i in "$@"
+ do
+     #echo "$i"
+     if [[ $i != *.tar* ]]; then
+        echo "Tarring $i"
+#        tar czf "$i.tar.gz" "$i"
+        tar -czf - "$i" | (pv -p --timer --rate --bytes > "$i.tar.gz")
+        echo "Finished tarring $i"
+     fi
+ done
