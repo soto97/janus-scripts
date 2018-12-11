@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# This script moves preexisting wrf_out, wrf_restarts, rsl_files,
+# and auxhist folders into archive folder versions. This is intended for 
+# situations where we re-run the simulation or restart the simulation 
+# and want to keep a separate record of the runs, including rsl files.
+
+# Distance ourselves (a tiny bit) from any screen litter:
+echo;
+
+# Determine fully-qualified filesystem location where this script was
+# executed from:
+curr_dir=`pwd`;
+
+
+###
+### RSL files
+### 
+
+# Check for an rsl_files directory; skip this step if there is no directory. 
+if test ! -d "$curr_dir/rsl_files"; then
+    echo "rsl files directory does not exist at this level"
+else
+    mv $curr_dir/rsl_files $curr_dir/rsl_archive
+    echo "rsl files have been moved into the rsl_archive directory"
+fi
+
+
+###
+### WRF Restart files
+### 
+
+# Check for a restart directory; skip this step if there is no directory.
+if test ! -d "$curr_dir/wrf_restarts"; then
+    echo "wrf restart files directory does not exist at this level"
+else
+    mv $curr_dir/wrf_restarts $curr_dir/wrf_restarts_archive
+    echo "WRF restart files have been moved into the wrf_restarts_archive directory"
+fi
+
+
+###
+### WRF Out files and namelist.input
+### 
+
+# Check for a WRF out directory; skip this step if there is no directory.
+if test ! -d "$curr_dir/wrf_out"; then
+    echo "wrf out directory does not exist at this level"
+else
+    mv $curr_dir/wrf_out $curr_dir/wrf_out_archive
+    echo "WRF out files have been moved into the wrf_out_archive directory"
+fi
+
+
+###
+### Auxiliary History files
+### 
+
+# Check for an auxiliary history directory; skip this step if there is no directory.
+if test ! -d "$curr_dir/auxhist"; then
+    echo "auxhist directory does not exist at this level"
+else
+    mv $curr_dir/auxhist $curr_dir/auxhist_archive
+    echo "auxhist files have been moved into the auxhist_archive directory"
+fi
+
+
+echo;
