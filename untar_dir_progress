@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Usage: untar_dir tar_filename
+# Untar and unzip the zipped tar file. This shows a progress bar.
+
 for i in "$@"
  do
      #echo "$i"

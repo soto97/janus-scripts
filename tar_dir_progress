@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Usage: tar_dir directory_name
+# Usage: tar_dir_progress directory_name
 # If directory name does not already have a tar version, then make a
-# tarred and zipped version.
+# tarred and zipped version. This shows a progress bar.
 
 for i in "$@"
  do
