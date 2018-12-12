@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for i in "$@"
+ do
+     #echo "$i"
+     #if [[ $i != *.tar* ]]; then
+        echo "Untarring $i"
+#        tar xzf "$i.tar.gz" "$i"
+        tar -xzf - "$i" | (pv -p --timer --rate --bytes > "$i.tar.gz")
+        echo "Finished untarring $i"
+     #fi
+ done
