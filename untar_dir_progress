@@ -9,7 +9,8 @@ for i in "$@"
      #if [[ $i != *.tar* ]]; then
         echo "Untarring $i"
 #        tar xzf "$i.tar.gz" "$i"
-        tar -xzf - "$i" | (pv -p --timer --rate --bytes > "$i.tar.gz")
+#        tar -xzf - | (pv -p --timer --rate --bytes > "$i")
+         pv -p --timer --rate --bytes $i | tar -xzf - 
         echo "Finished untarring $i"
      #fi
  done
