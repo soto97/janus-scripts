@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Usage: untar_dir tar_filename
+# Untar and unzip the zipped tar file.
+
+for i in "$@"
+ do
+     #echo "$i"
+     #if [[ $i != *.tar* ]]; then
+        echo "Untarring $i"
+        tar xzf "$i.tar.gz" "$i"
+        echo "Finished untarring $i"
+     #fi
+ done
