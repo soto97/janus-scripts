@@ -3,3 +3,5 @@
 rm -f wrfo*
 rm -f wrfr*
 rm -f wrfinput*
+rm -f auxhist*
+
