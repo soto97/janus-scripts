@@ -9,7 +9,7 @@ for i in "$@"
      #echo "$i"
      if [[ $i != *.tar* ]]; then
         echo "Tarring $i"
-        tar czf "$i.tar.gz" "$i"
+        tar czvf "$i.tar.gz" "$i"
         echo "Finished tarring $i"
      fi
  done
