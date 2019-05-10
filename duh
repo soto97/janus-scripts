@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# This code provides sorted disk usage for everything, including hidden files.
+# There is no input for the script. The code will search all files and directories,
+# in the current directory, determine the size of the file or directory, and return 
+# a list of items sorted by size. Unlike my dusort code, this script includes the
+# file size of the hidden files and hidden directories.
+
+# First we use a regular expression to make sure we get the hidden files. Then,
+# we run it through disk usage, du, followed by sorting the results.
+du -sk * .[a-zA-Z]* | sort -n | 
+awk '
+{split(" KB, MB, GB, TB",size,",");}
+{x = 1;while ($1 >= 1024) 
+	{$1 = $1 / 1024;x = x + 1} $1 = sprintf("%8.1f%s", $1, size[x]); printf("%-s\n", $0);}'
+
+echo;
+
+# This final bit of code creates a human readable formatted total summary of disk usage.
+du -sk | awk '{ 
+
+    numBytes = $1 * 1024; 
+    numUnits = split("B K M G T P", unit); 
+    num = numBytes; 
+    iUnit = 0; 
+
+    while(num >= 1024 && iUnit + 1 < numUnits) { 
+        num = num / 1024; 
+        iUnit++; 
+    } 
+
+    $1 = sprintf( ((num == 0) ? "%6d%s " : "%6.1f%s "), num, unit[iUnit + 1]);
+    print "Total" $0; 
+
+}'
