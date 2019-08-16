@@ -1,1 +1,41 @@
-grep "Timing for main" $1 | awk 'BEGIN{t=0;c=0}{t=t+$9;c=c+1}END{print "\t total count \t|\t total time\t |\t mean time \t|\t hrs for 1 Sim Year " ;print " \t" c " \t\t| \t " t "\t\t |\t " t/c "\t |\t  " (t/c)*321120/3600}'
+#!/bin/bash
+
+#
+# This script reads the log file or rsl file (parallel runs) for a WRF
+# simulation and calculates the clock time to simulate a single day/sol. 
+# This information can be used to estimate how long the simulation will 
+# take to run.
+#
+# The script requires two parameters to be entered at the command line:
+# the file name and the timestep in seconds. Thus, the script is evoked
+# by the following syntax:
+#
+# twrf wrf_log_.txt time_step
+#
+# The script would then read rsl.out.0000 and calculate the clock time to
+# simulate one model year using "time_step" as the time-step in the simulation.
+#
+# Written by A. Soto
+# 2018-04-16
+#
+
+tstep=$2
+
+grep "Timing for main" $1 | awk -v tstep="$tstep" 'BEGIN{t=0;c=0}{t=t+$9;c=c+1}END{
+  print "\t total timestep count: \t \t \t" c
+; print "\t total clock time (seconds): \t \t" t
+; print "\t mean clock time (seconds): \t \t" t/c
+; print "\t clock time for 1 Sim Year (hours): \t"  (t/c)*(57801600/tstep)/3600
+}'
+
+
+
+
+
+
+
+
+
+
+
+#grep "Timing for main" $1 | awk 'BEGIN{t=0;c=0}{t=t+$9;c=c+1}END{print "\t total count \t|\t total time\t |\t mean time \t|\t hrs for 1 Sim Year " ;print " \t" c " \t\t| \t " t "\t\t |\t " t/c "\t |\t  " (t/c)*321120/3600}'
