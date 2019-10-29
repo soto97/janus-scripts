@@ -29,8 +29,10 @@ name_number=$1
 #grep "Timing for main" "$dir_name$name_number/$name_root$name_number.txt" | awk -v tstep="$tstep" 'BEGIN{t=0;c=0}{t=t+$9;c=c+1}END{print "\t total count \t|\t total time (min) \t |\t mean time per timestep (sec) \t |\t min for 1 Sim Day " ;print " \t" c " \t\t| \t " t/60 "\t\t |\t " t/c "\t\t\t |\t  " (t/c)*(60/tstep)*60*24/60}'
 
 grep "Timing for main" "$dir_name$name_number/$name_root$name_number.txt" | awk -v tstep="$tstep" 'BEGIN{t=0;c=0}{t=t+$9;c=c+1}END{
-  print "\t total timestep count: \t \t \t" c
-; print "\t total clock time (seconds): \t \t" t/50
+  print "\t Timing for mtWRF simulation " 
+; print "\t total timestep count: \t \t \t" c
 ; print "\t mean clock time (seconds): \t \t" t/c
-; print "\t clock time for 1 Sim Year (hours): \t" (t/c)*(60/tstep)*60*24/60 
+; print "\t total clock time (hours): \t \t" t/60/60
+; print "\t clock time for 1 tsol (hours): \t" (t/c)*(60/tstep)*60*24/3600 
+; print "\t clock time for 5 tsols (days): \t" (t/c)*(60/tstep)*60*24*5/86400
 }'
