@@ -1,1 +1,0 @@
-grep "Timing for main" $1 | awk 'BEGIN{t=0;c=0}{t=t+$9;c=c+1}END{print "\t total count \t|\t total time\t |\t mean time \t|\t hrs for 1 Sim Year " ;print " \t" c " \t\t| \t " t "\t\t |\t " t/c "\t |\t  " (t/c)*321120/3600}'
