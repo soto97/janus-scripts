@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#
+# This script reads the log file or rsl file (parallel runs) for a WRF
+# simulation and calculates the clock time to simulate a single day/sol. 
+# This information can be used to estimate how long the simulation will 
+# take to run.
+#
+# The script requires two parameters to be entered at the command line:
+# the file name and the timestep in seconds. Thus, the script is evoked
+# by the following syntax:
+#
+# t_meso wrf_log.txt 15
+#
+# The script would then read wrf_log.txt and calculated the clock time to
+# simulate one model day using 15 seconds as the time-step in the simulation.
+#
+# Written by A. Soto
+# 2014-02-03
+#
+
+
+tstep=1
+dir_name='titan_paper-'
+name_root='paper-'
+name_number=$1
+
+
+#grep "Timing for main" "$dir_name$name_number/$name_root$name_number.txt" | awk -v tstep="$tstep" 'BEGIN{t=0;c=0}{t=t+$9;c=c+1}END{print "\t total count \t|\t total time (min) \t |\t mean time per timestep (sec) \t |\t min for 1 Sim Day " ;print " \t" c " \t\t| \t " t/60 "\t\t |\t " t/c "\t\t\t |\t  " (t/c)*(60/tstep)*60*24/60}'
+
+grep "Timing for main" "$dir_name$name_number/$name_root$name_number.txt" | awk -v tstep="$tstep" 'BEGIN{t=0;c=0}{t=t+$9;c=c+1}END{
+  print "\t Timing for mtWRF simulation " 
+; print "\t total timestep count: \t \t \t" c
+; print "\t mean clock time (seconds): \t \t" t/c
+; print "\t total clock time (hours): \t \t" t/60/60
+; print "\t clock time for 1 tsol (hours): \t" (t/c)*(60/tstep)*60*24/3600 
+; print "\t clock time for 5 tsols (days): \t" (t/c)*(60/tstep)*60*24*5/86400
+}'

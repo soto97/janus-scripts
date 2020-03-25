@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Makes a copy of the WRF run directory without copying NetCDF files
+# and other auxiliary files. This is a useful step if you are running
+# another simulation with the same code by a different set of 
+# parameters. With this script, you can quickly set up a new directory 
+# that matches the old one. 
+
+# You need to run the wcu script before thie one. wrf_dircopy_nodata
+# assumes that your data has already been organized by the wcu script.
+
+# Usage: wrf_dircopy_nodata source_folder destination_folder
+# $1 is the source folder and $2 is the destination folder
+
+#dir_name='../paper_sims_v1/titan_paper-'
+#name_number=$1
+
+name_root='titan_paper-'
+src_dir=$name_root$1
+dest_dir=$name_root$2
+
+rsync -av --progress --exclude='wrfinput_d01' --exclude='*.nc' --exclude='wrfout*' --exclude='wrfrst*' $src_dir/ $dest_dir/
