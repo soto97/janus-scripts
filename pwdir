@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Usage: 'pwdx PID'
+# Usage: 'pwdir PID'
 # where the PID is obtained from the ps command.
 # This script will show the directory in which the process was started.
  

@@ -1,5 +1,0 @@
-#! /bin/bash
-
-rm -f *.out *.error
-rm -f *.out.* *.error.*
-rm -f *.log
