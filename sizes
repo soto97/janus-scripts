@@ -182,9 +182,9 @@ class String
     when /\/$/
       filename.green
     when /^\./
-      filename.white
+      filename.blue
     else
-      filename.bold.white
+      filename.bold.blue
     end
   end
 
