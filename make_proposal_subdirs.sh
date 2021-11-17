@@ -7,7 +7,8 @@
 mkdir background_science
 mkdir background_engineering
 mkdir budget
-mkdir planning
+mkdir budget/planning
+mkdir budget/budget_for_
 mkdir roses_docs
 mkdir step1
 mkdir step2
