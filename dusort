@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-du -sk "$@" | sort -n | 
+du -sk  --apparent-size "$@" | sort -n | 
 awk '
 {split(" KB, MB, GB, TB",size,",");}
 {x = 1;while ($1 >= 1024) 
